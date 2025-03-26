@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18-5.html</title>
+</head>
+    <style>
+        .button1 {
+            background-color: blue;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10%;
+        }
+        .button2 {
+            background-color: orange;
+            color: white;
+        }
+        .button3 {
+            background-color: red;
+            color: white;
+        }
+    </style>
+<body>
+    <!-- tạo form quản lý sinh viên -->
+    <h1>Quản lý danh sách sinh viên</h1>
+    <input class="name" id="name" placeholder="Tên sinh viên" type="text">
+    <input class="age" id="age" placeholder="Tuổi" type="text">  <br>
+    <input class="class" id="class" placeholder="Lớp" type="text"> 
+    <button class="button1" onclick="addStudent()">Thêm sinh viên</button> <br> <br>
+    <input id="search" oninput="findStudent()" placeholder="Tìm kiếm sinh viên..." type="text">
+    <!-- hiển thị danh sách sinh viên
+      -->
+    <table border="1" cellpadding="15">
+        <thead>
+            <tr>
+                <td>STT</td>
+                <td>Tên</td>
+                <td>Tuổi</td>
+                <td>Lớp</td>
+                <td colspan>Hành Động</td>
+            </tr>
+        </thead>
+        <tbody id="list">
+           
+        </tbody>
+       
+    </table>
+    <script>
+        // document.getElementById("list").innerHTML=` <h1>xin chào!</h1>`;
+        // tạo mảng để lưu danh sách các đối tượng sinh viên
+        // let students = JSON.parse(localStorage.getItem("students"))||[];
+        let students=[];
+        // tạo hàm thêm sinh viên
+        function addStudent() {
+            let studentName = document.getElementById("name").value;
+            let age = document.getElementById("age").value;
+            let className = document.getElementById("class").value;
+            let id;
+            // tạo id cho từng đối tượng 
+            if (students.length == 0) {
+                id = 1
+            } else {
+                id = students[students.length - 1].id + 1;
+            }
+            // tạo đối tượng sinh viên
+            let student = {
+                id: id,
+                name: studentName,
+                age: age,
+                class: className,
+            }
+            // thêm vào mảng chứa danh sách sinh viên
+            students.push(student);
+            console.log("students", students);
+            // localStorage.setItem("students",JSON.stringify(students));
+            // gọi hàm showStudents để cập nhật lại giao diện
+            showStudents(students);
+        }
+        // tạo hàm hiển thị danh sách sinh viên
+        function showStudents(list) {
+            let str = "";
+            for (let i = 0; i < list.length; i++) {
+                str +=
+                    `   
+                    <tr>
+                        <td>${i+1}</td>
+                        <td>${list[i].name}</td>
+                        <td>${list[i].age}</td>
+                        <td>${list[i].class}</td>
+                        <td>
+                            <button class = "button2" onclick= updateStudent(${i})>sửa</button>
+                            <button class = "button3" onClick= removeStudent(${i})>xóa</button>
+                        </td>
+                    </tr>
+                `
+            }
+            document.getElementById("list").innerHTML= str;
+        }
+        // showStudents()
+        // tạo hàm xóa sinh viên
+        function removeStudent(index) {
+                console.log("index",index);
+                let confirmDelete= confirm("bạn có muốn xóa hay không?");
+                if(confirmDelete){
+                    students.splice(index,1);
+                    // sau khi xóa xong gọi hàm cập nhật lại giao diện
+                    showStudents(students);
+                }
+        }
+        function updateStudent(index) {
+            console.log("index",index);
+            students[index].name= prompt("tên mới");
+            students[index].age= prompt("tuổi mới");
+            students[index].class= prompt("tên lớp mới");
+            showStudents(students);
+        }
+        // function tìm kiếm sinh viên
+        function findStudent() {
+            console.log("tìm kiếm!");
+            let searchName=  document.getElementById("search").value;
+            let result= students.filter(item=>item.age.includes(searchName));
+            showStudents(result);
+        }
+    </script>
+</body>
+
+</html>
