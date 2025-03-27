@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18-1-1.html</title>
+</head>
+<body>
+    <script>
+        const person = {
+            name: "Nguyễn Văn A",
+            age: 30,
+            address: "123 Đường ABC, Quận X, Thành phố Y",
+            phone: "0123456789"
+        };
+        console.log("Tên:", person.name);
+        console.log("Tuổi:", person.age);
+        console.log("Địa chỉ:", person.address);
+        console.log("Số điện thoại:", person.phone);
+    </script>
+</body>
+</html>
