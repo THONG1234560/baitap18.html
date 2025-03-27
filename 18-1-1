@@ -6,17 +6,22 @@
     <title>18-1-1.html</title>
 </head>
 <body>
+    <div id="name">Nguyễn Văn A</div>
+    <div id="age">30</div>
+    <div id="adress">123 Đường ABC, Quận X, Thành phố Y</div>
+    <div id="phone">0123456789</div>
     <script>
-        const person = {
-            name: "Nguyễn Văn A",
-            age: 30,
-            address: "123 Đường ABC, Quận X, Thành phố Y",
-            phone: "0123456789"
-        };
-        console.log("Tên:", person.name);
-        console.log("Tuổi:", person.age);
-        console.log("Địa chỉ:", person.address);
-        console.log("Số điện thoại:", person.phone);
+        const nameElement = document.getElementById('name');
+        console.log("Họ và tên:", nameElement.textContent);
+
+        const ageElement = document.getElementById('age');
+        console.log("Tuổi:", ageElement.textContent);
+
+        const addressElement = document.getElementById('adress');
+        console.log("Địa chỉ:", addressElement.textContent);
+
+        const phoneElement = document.getElementById('phone');
+        console.log("Số điện thoại:", phoneElement.textContent);
     </script>
 </body>
 </html>
