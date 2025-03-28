@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18-1-2.html</title>
+    <style>
+        th {
+            background-color: lightskyblue;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student</h1>
+    <table>
+        <tr>
+            <th>key</th>
+            <th>value</th>
+        </tr>
+        <tr>
+            <td>ID</td>
+            <td id="student-id">1</td>
+        </tr>
+        <tr>
+            <td>name</td>
+            <td id="student-name">Nguyễn Văn A</td>
+        </tr>
+        <tr>
+            <td>gender</td>
+            <td id="student-gender">Male</td>
+        </tr>
+        <tr>
+            <td>age</td>
+            <td id="student-age">20</td>
+        </tr>
+        <tr>
+            <td>mark</td>
+            <td id="student-mark">8</td>
+        </tr>
+    </table>
+    <button onclick="addNewStudent()">Add New Student</button>
+    <button onclick="displayAllStudents()">Display All Students</button>
+
+    <script>
+        const students = [];
+        const student = {
+            ID: document.getElementById('student-id').textContent,
+            name: document.getElementById('student-name').textContent,
+            gender: document.getElementById('student-gender').textContent,
+            age: parseInt(document.getElementById('student-age').textContent, 10),
+            mark: parseFloat(document.getElementById('student-mark').textContent)
+        };
+        students.push(student);
+
+        function addNewStudent() {
+            const newStudent = {
+                ID: prompt("Enter Student ID:"),
+                name: prompt("Enter Student Name:"),
+                gender: prompt("Enter Gender (Male/Female):"),
+                age: parseInt(prompt("Enter Age:"), 10),
+                mark: parseFloat(prompt("Enter Mark:"))
+            };
+            students.push(newStudent);
+        }
+        function displayAllStudents() {
+            console.log("All Students:");
+            students.forEach((student, index) => {
+                console.log(`Student ${index + 1}:`);
+                console.log("ID:", student.ID);
+                console.log("Name:", student.name);
+                console.log("Gender:", student.gender);
+                console.log("Age:", student.age);
+                console.log("Mark:", student.mark);
+            });
+        }
+    </script>
+</body>
+</html>
