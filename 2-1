@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18-2-1.html</title>
+</head>
+<body>
+    <script>
+        let products = [
+            { id: 1, name: 'Milk', count: 100 },
+            { id: 2, name: 'Orange', count: 100 },
+            { id: 3, name: 'Butter', count: 100 },
+        ];
+
+        products.push({ id: 4, name: 'Cheese', count: 50 });
+        products = products.filter(product => product.id !== 2);
+
+        let productToUpdate = products.find(product => product.id === 3);
+        if (productToUpdate) {
+            productToUpdate.count = 0;
+        }
+
+        let butterProduct = products.find(product => product.name === 'Butter');
+        if (butterProduct) {
+            console.log("Found product:", butterProduct);
+        } else {
+            console.log("Không có dữ liệu bạn tìm kiếm");
+        }
+        console.log(products);
+    </script>
+</body>
+</html>
