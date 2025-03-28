@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18-2-2.html</title>
+</head>
+<body>
+    <script>
+        let products = [
+            { id: 1, name: 'HTML', complete: false },
+            { id: 2, name: 'CSS', complete: false },
+            { id: 3, name: 'Basic of javascript', complete: false },
+            { id: 4, name: 'Node package Manager (npm)', complete: false },
+            { id: 5, name: 'Git', complete: false },
+        ];
+
+        function displayProducts() {
+            console.log('Courses:');
+            products.forEach(product => {
+                console.log(`ID: ${product.id}, Name: ${product.name}, Complete: ${product.complete}`);
+            });
+        }
+
+        function runProgram() {
+            let keepRunning = true;
+
+            while (keepRunning) {
+                let action = prompt("Enter C, R, U, D, or E:").toUpperCase();
+
+                switch (action) {
+                    case 'C': {
+                        let name = prompt("Enter the name of the new course:");
+                        let complete = prompt("Is this course complete? (true/false):") === 'true';
+                        let newId = products.length > 0 ? products[products.length - 1].id + 1 : 1;
+                        products.push({ id: newId, name: name, complete: complete });
+                        displayProducts();
+                        break;
+                    }
+
+                    case 'R': {
+                        displayProducts();
+                        break;
+                    }
+
+                    case 'U': {
+                        let idToUpdate = parseInt(prompt("Enter the ID of the course you want to update:"));
+                        let product = products.find(p => p.id === idToUpdate);
+                        if (product) {
+                            product.name = prompt("Enter the new name for the course:");
+                            product.complete = prompt("Is this course complete? (true/false):") === 'true';
+                            displayProducts();
+                        } else {
+                            console.log("Course not found.");
+                        }
+                        break;
+                    }
+
+                    case 'D': {
+                        let idToDelete = parseInt(prompt("Enter the ID of the course you want to delete:"));
+                        products = products.filter(p => p.id !== idToDelete);
+                        displayProducts();
+                        break;
+                    }
+
+                    case 'E': {
+                        keepRunning = false;
+                        console.log("Cảm ơn bạn đã đến với Rikkei Academy");
+                        break;
+                    }
+
+                    default: {
+                        console.log("Invalid input. Please enter C, R, U, D, or E.");
+                    }
+                }
+            }
+        }
+
+        runProgram();
+    </script>
+</body>
+</html>
