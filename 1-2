@@ -45,7 +45,6 @@
         </tr>
     </table>
     <button onclick="addNewStudent()">Add New Student</button>
-    <button onclick="displayAllStudents()">Display All Students</button>
 
     <script>
         const students = [];
@@ -67,7 +66,9 @@
                 mark: parseFloat(prompt("Enter Mark:"))
             };
             students.push(newStudent);
+            displayAllStudents();
         }
+
         function displayAllStudents() {
             console.log("All Students:");
             students.forEach((student, index) => {
