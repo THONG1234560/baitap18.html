@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18-4.html</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            width: 400px;
+            justify-content: center;
+        }
+        button {
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            margin-top: 20px;
+            margin-left: 5px;
+        }
+        button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form>
+            <input id="input-field" type="text" placeholder="Nhập ở đây" style="width: 300px; height: 30px;">
+        </form><br>
+        <div id="button-container"></div>
+        <button id="clear-button">Xóa</button>
+    </div>
+
+    <script>
+        const buttonContainer = document.getElementById("button-container");
+        const inputField = document.getElementById("input-field");
+
+        for (let i = 65; i <= 90; i++) {
+            const button = document.createElement("button");
+            button.textContent = String.fromCharCode(i);
+            button.addEventListener("click", () => {
+                inputField.value += button.textContent;
+            });
+            buttonContainer.appendChild(button);
+        }
+        const clearButton = document.getElementById("clear-button");
+        clearButton.addEventListener("click", () => {
+            inputField.value = "";
+        });
+    </script>
+</body>
+</html>
