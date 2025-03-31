@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18-3.html</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 500px;
+        }
+        .header {
+            padding-top: 5px;
+            justify-items: center;
+            justify-content: center;
+            background-color: red;
+            height: 100px;
+        }
+        label.checked {
+            background-color: gray;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2 style="color: white;">Danh sách những việc cần làm trong năm</h2>
+            <div>
+                <form>
+                    <input type="text" value="Title..."> <button style="background-color: gray;">Thêm</button>
+                </form>
+            </div>
+        </div>
+        <input type="checkbox" id="job-google"><label for="job-google">Xin việc ở Google</label><br>
+        <input type="checkbox" id="buy-villa"><label for="buy-villa">Mua biệt thự</label><br>
+        <input type="checkbox" id="marry"><label for="marry">Cưới vợ</label><br>
+        <input type="checkbox" id="buy-car"><label for="buy-car">Mua xe hơi</label><br>
+        <input type="checkbox" id="have-children"><label for="have-children">Sinh con</label><br>
+        <input type="checkbox" id="travel-world"><label for="travel-world">Đi du lịch vòng quanh thế giới</label>
+    </div>
+
+    <script>
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const label = document.querySelector(`label[for="${this.id}"]`);
+                if (this.checked) {
+                    label.classList.add('checked');
+                } else {
+                    label.classList.remove('checked');
+                }
+            });
+        });
+
+        const form = document.querySelector('form');
+        const container = document.querySelector('.container');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            const input = form.querySelector('input[type="text"]');
+            const newItem = input.value.trim();
+            if (newItem) {
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = newItem.toLowerCase().replace(/\s+/g, '-'); // Unique ID based on text
+
+                const label = document.createElement('label');
+                label.htmlFor = checkbox.id;
+                label.textContent = newItem;
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        label.classList.add('checked');
+                    } else {
+                        label.classList.remove('checked');
+                    }
+                });
+                container.appendChild(document.createElement('br'));
+                container.appendChild(checkbox);
+                container.appendChild(label);
+                input.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
